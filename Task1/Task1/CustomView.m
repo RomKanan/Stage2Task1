@@ -9,6 +9,7 @@
 #import "CustomView.h"
 
 
+
 @interface CustomView ()
 @property (assign, nonatomic) CGFloat oldX;
 @property (assign, nonatomic) CGFloat oldY;
@@ -35,6 +36,8 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.superview bringSubviewToFront:self];
+    [self.delegate setTitleAccordingToView:self];
     CGPoint touchInSuper = [touches.anyObject locationInView:self.superview];
     self.oldX = touchInSuper.x;
     self.oldY = touchInSuper.y;
@@ -50,7 +53,6 @@
     CGFloat difY = self.oldY- touchInSuper.y;
 
     self.center = CGPointMake(self.oldCenter.x - difX, self.oldCenter.y - difY);
-    NSLog(@"Diff: %f, %f", difX, difY);
 }
 
 

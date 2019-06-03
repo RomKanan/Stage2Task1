@@ -10,13 +10,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class CustomView;
+
+@protocol CustomViewDelegate <NSObject>
+
+-(void)setTitleAccordingToView:(CustomView*)view;
+
+@end
+
+
 @interface CustomView : UIView
-@property (strong, nonatomic ) UIImage* image;
-@property (strong, nonatomic ) NSString* urlDescription;
+
+@property (strong, nonatomic) UIImage* image;
+@property (strong, nonatomic) NSString* urlDescription;
+@property (weak, nonatomic) id<CustomViewDelegate> delegate;
 
 
 
 - (instancetype)initWithImage:(UIImage*)image andDescription:(NSString*)description;
 @end
+
 
 NS_ASSUME_NONNULL_END

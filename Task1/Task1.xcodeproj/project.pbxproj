@@ -15,6 +15,8 @@
 		A005A5C922A4546C00DD2488 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A005A5C822A4546C00DD2488 /* main.m */; };
 		A005A5D122A4553B00DD2488 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A005A5D022A4553B00DD2488 /* CustomView.m */; };
 		A0A1D04E22A50F7D0027136A /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A1D04D22A50F7D0027136A /* DataSource.m */; };
+		A0A1D05222A53D430027136A /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A1D05022A53D430027136A /* ScrollViewController.m */; };
+		A0A1D05322A53D430027136A /* ScrollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0A1D05122A53D430027136A /* ScrollViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,9 @@
 		A005A5D022A4553B00DD2488 /* CustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
 		A0A1D04C22A50F7D0027136A /* DataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		A0A1D04D22A50F7D0027136A /* DataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		A0A1D04F22A53D430027136A /* ScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewController.h; sourceTree = "<group>"; };
+		A0A1D05022A53D430027136A /* ScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewController.m; sourceTree = "<group>"; };
+		A0A1D05122A53D430027136A /* ScrollViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScrollViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +77,9 @@
 				A005A5D022A4553B00DD2488 /* CustomView.m */,
 				A0A1D04C22A50F7D0027136A /* DataSource.h */,
 				A0A1D04D22A50F7D0027136A /* DataSource.m */,
+				A0A1D04F22A53D430027136A /* ScrollViewController.h */,
+				A0A1D05022A53D430027136A /* ScrollViewController.m */,
+				A0A1D05122A53D430027136A /* ScrollViewController.xib */,
 				A005A5BF22A4546C00DD2488 /* Main.storyboard */,
 				A005A5C222A4546C00DD2488 /* Assets.xcassets */,
 				A005A5C422A4546C00DD2488 /* LaunchScreen.storyboard */,
@@ -141,6 +149,7 @@
 				A005A5C622A4546C00DD2488 /* LaunchScreen.storyboard in Resources */,
 				A005A5C322A4546C00DD2488 /* Assets.xcassets in Resources */,
 				A005A5C122A4546C00DD2488 /* Main.storyboard in Resources */,
+				A0A1D05322A53D430027136A /* ScrollViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +163,7 @@
 				A005A5BE22A4546C00DD2488 /* ViewController.m in Sources */,
 				A0A1D04E22A50F7D0027136A /* DataSource.m in Sources */,
 				A005A5D122A4553B00DD2488 /* CustomView.m in Sources */,
+				A0A1D05222A53D430027136A /* ScrollViewController.m in Sources */,
 				A005A5C922A4546C00DD2488 /* main.m in Sources */,
 				A005A5BB22A4546C00DD2488 /* AppDelegate.m in Sources */,
 			);

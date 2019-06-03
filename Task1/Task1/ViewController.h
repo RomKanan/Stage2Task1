@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomView.h"
+#import "DataSource.h"
+#import "ScrollViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <CustomViewDelegate>
 
 
 @end
-
