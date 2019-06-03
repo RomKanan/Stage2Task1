@@ -11,11 +11,8 @@
 @interface ScrollViewController ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) NSArray<CustomView*> *customViews;
 @property (assign, nonatomic) CGFloat contentWidth;
 @property (assign, nonatomic) CGFloat contentHeigh;
-
-
 @end
 
 @implementation ScrollViewController
@@ -40,18 +37,17 @@
        [self.scrollView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor]
        ]];
     
-    self.customViews = [[DataSource sharedInstance].views copy];
+    NSMutableArray<CustomView*> *customViews = [NSMutableArray array];
     
-    
-    
-    for (CustomView* view in self.customViews) {
-        if (view.image.size.width > self.contentWidth) {
-        self.contentWidth = view.image.size.width;
+    for (Item* item in [DataSource sharedInstance].items) {
+        CustomView* view = [[CustomView alloc] initWithItem:item];
+        if (item.image.size.width > self.contentWidth) {
+        self.contentWidth = item.image.size.width;
         }
-        self.contentHeigh += view.image.size.height + 20.f;
+        self.contentHeigh += item.image.size.height + 20.f;
         UILabel* descriptionLable = [[UILabel alloc] init];
         [view addSubview:descriptionLable];
-        descriptionLable.text = view.urlDescription;
+        descriptionLable.text = view.item.urlDescription;
         descriptionLable.textColor = [UIColor redColor];
         descriptionLable.font = [UIFont boldSystemFontOfSize:30.f];
         descriptionLable.textAlignment = NSTextAlignmentCenter;
@@ -64,41 +60,40 @@
         [self.scrollView addSubview:view];
         UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTaped:)];
         [view addGestureRecognizer:tapRecognizer];
+        [customViews addObject:view];
     }
     
-
-    
-    for (CustomView* view in self.customViews) {
+    for (CustomView* view in customViews) {
         view.translatesAutoresizingMaskIntoConstraints = NO;
-        [view.heightAnchor constraintEqualToConstant:view.image.size.height].active = YES;
-        [view.widthAnchor constraintEqualToConstant:view.image.size.width].active = YES;
+        [view.heightAnchor constraintEqualToConstant:view.item.image.size.height].active = YES;
+        [view.widthAnchor constraintEqualToConstant:view.item.image.size.width].active = YES;
         
-        if ([self.customViews indexOfObject:view] == 0) {
+        if ([customViews indexOfObject:view] == 0) {
             [view.topAnchor constraintEqualToAnchor:view.superview.topAnchor constant: 20.f].active = YES;
             
             [view.bottomAnchor constraintEqualToAnchor:
-             [self.customViews objectAtIndex:[self.customViews indexOfObject:view] + 1].topAnchor
+             [customViews objectAtIndex:[customViews indexOfObject:view] + 1].topAnchor
                                               constant:-20.f].active = YES;
             
-        } else if ([self.customViews indexOfObject:view] == self.customViews.count - 1) {
+        } else if ([customViews indexOfObject:view] == customViews.count - 1) {
             [view.bottomAnchor constraintEqualToAnchor:view.superview.bottomAnchor constant: 20.f].active = YES;
         } else {
-            CustomView* next = [self.customViews objectAtIndex:[self.customViews indexOfObject:view] + 1];
+            CustomView* next = [customViews objectAtIndex:[customViews indexOfObject:view] + 1];
             [view.bottomAnchor constraintEqualToAnchor: next.topAnchor constant:-20.f].active = YES;
-            
         }
     }
-    
-
-    
 }
 
 - (void)closeClicked:(id)send {
+    [self.delegate restoreTitle];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewTaped:(UITapGestureRecognizer *)recognizer {
-  //self.title = @"Drag'n'Drop Strange Cats";
+    [self.delegate restoreTitle];
+    CustomView* view = (CustomView*)recognizer.view;
+    [self.delegate passViewWithItem:view.item];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

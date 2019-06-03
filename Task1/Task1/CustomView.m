@@ -8,36 +8,32 @@
 
 #import "CustomView.h"
 
-
-
 @interface CustomView ()
+
 @property (assign, nonatomic) CGFloat oldX;
 @property (assign, nonatomic) CGFloat oldY;
 @property (assign, nonatomic) CGPoint oldCenter;
+
 @end
 
 @implementation CustomView
 
-- (instancetype)initWithImage:(UIImage*)image andDescription:(NSString*)description {
+- (instancetype)initWithItem:(Item*)item{
     self = [super init];
     if (self) {
-        self.image = image;
-        self.urlDescription = description;
+        _item = item;
     }
-    return self;
     
+    return self;
 }
 
-
-
 - (void)drawRect:(CGRect)rect{
-    
-    [self.image drawInRect:rect];
+    [self.item.image drawInRect:rect];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.superview bringSubviewToFront:self];
-    [self.delegate setTitleAccordingToView:self];
+    [self.delegate setTitleAccordingToView:self.item];
     CGPoint touchInSuper = [touches.anyObject locationInView:self.superview];
     self.oldX = touchInSuper.x;
     self.oldY = touchInSuper.y;
@@ -46,12 +42,9 @@
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super  touchesMoved:touches withEvent:event];
-
     CGPoint touchInSuper = [touches.anyObject locationInView:self.superview];
-    
     CGFloat difX = self.oldX - touchInSuper.x;
     CGFloat difY = self.oldY- touchInSuper.y;
-
     self.center = CGPointMake(self.oldCenter.x - difX, self.oldCenter.y - difY);
 }
 

@@ -11,7 +11,7 @@
 #import "DataSource.h"
 #import "ScrollViewController.h"
 
-@interface ViewController : UIViewController <CustomViewDelegate>
+@interface ViewController : UIViewController <CustomViewDelegate, ScrollVCDelegate>
 
 
 @end

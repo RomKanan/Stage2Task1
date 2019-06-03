@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Item.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,20 +15,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol CustomViewDelegate <NSObject>
 
--(void)setTitleAccordingToView:(CustomView*)view;
+-(void)setTitleAccordingToView:(Item*)view;
 
 @end
 
 
 @interface CustomView : UIView
 
-@property (strong, nonatomic) UIImage* image;
-@property (strong, nonatomic) NSString* urlDescription;
+@property (strong, nonatomic) Item* item;
 @property (weak, nonatomic) id<CustomViewDelegate> delegate;
 
-
-
-- (instancetype)initWithImage:(UIImage*)image andDescription:(NSString*)description;
+- (instancetype)initWithItem:(Item*)item;
 @end
 
 

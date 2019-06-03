@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DataSource : NSObject
 
-@property (strong, nonatomic) NSArray<CustomView*> *views;
+@property (strong, nonatomic) NSArray<Item*> *items;
 
 + (DataSource*)sharedInstance;
 

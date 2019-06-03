@@ -23,8 +23,7 @@ static DataSource *SINGLETON = nil;
 
 static bool isFirstAccess = YES;
 
-- (id) init
-{
+- (id) init{
     if(SINGLETON){
         return SINGLETON;
     }
@@ -66,22 +65,22 @@ static bool isFirstAccess = YES;
     
     NSMutableArray* arr = [[NSMutableArray alloc] init];
     
-    
     for(NSUInteger i = 0; i < self.imagesWithUrls.count; i++){
         NSString* identifire = [NSString stringWithFormat:@"%ld", i];
         NSString* description = [self.imagesWithUrls objectForKey:identifire];
         UIImage* image = [UIImage imageNamed:identifire];
-        CustomView* view = [[CustomView alloc] initWithImage:image andDescription:description];
-        [arr addObject:view];
+        Item* item = [[Item alloc] init];
+        item.urlDescription = description;
+        item.image = image;
+        [arr addObject:item];
     }
+    self.items = [arr copy];
     
-    self.views = [arr copy];
     return self;
 }
 
 
-+ (id)sharedInstance
-{
++ (id)sharedInstance{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         isFirstAccess = NO;
@@ -91,19 +90,16 @@ static bool isFirstAccess = YES;
     return SINGLETON;
 }
 
-+ (id) allocWithZone:(NSZone *)zone
-{
++ (id) allocWithZone:(NSZone *)zone{
     return [self sharedInstance];
 }
 
 
-- (id)copy
-{
+- (id)copy{
     return [[DataSource alloc] init];
 }
 
-- (id)mutableCopy
-{
+- (id)mutableCopy{
     return [[DataSource alloc] init];
 }
 
