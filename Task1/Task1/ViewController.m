@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CustomView.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UIImage* image = [UIImage imageNamed:@"Image"];
+    CustomView* v = [[CustomView alloc] initWithImage:image andDescription:@"test"];
+    v.frame = CGRectMake(0, 0, 100, 100);
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:v];
+    v.center = self.view.center;
+    
 }
 
 

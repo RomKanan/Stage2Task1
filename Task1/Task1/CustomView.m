@@ -8,14 +8,51 @@
 
 #import "CustomView.h"
 
+
+@interface CustomView ()
+@property (assign, nonatomic) CGFloat oldX;
+@property (assign, nonatomic) CGFloat oldY;
+@property (assign, nonatomic) CGPoint oldCenter;
+@end
+
 @implementation CustomView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithImage:(UIImage*)image andDescription:(NSString*)description {
+    self = [super init];
+    if (self) {
+        self.image = image;
+        self.urlDescription = description;
+    }
+    return self;
+    
 }
-*/
+
+
+
+- (void)drawRect:(CGRect)rect{
+    
+    [self.image drawInRect:rect];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGPoint touchInSuper = [touches.anyObject locationInView:self.superview];
+    self.oldX = touchInSuper.x;
+    self.oldY = touchInSuper.y;
+    self.oldCenter = self.center;
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super  touchesMoved:touches withEvent:event];
+
+    CGPoint touchInSuper = [touches.anyObject locationInView:self.superview];
+    
+    CGFloat difX = self.oldX - touchInSuper.x;
+    CGFloat difY = self.oldY- touchInSuper.y;
+
+    self.center = CGPointMake(self.oldCenter.x - difX, self.oldCenter.y - difY);
+    NSLog(@"Diff: %f, %f", difX, difY);
+}
+
+
 
 @end

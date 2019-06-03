@@ -11,7 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CustomView : UIView
+@property (strong, nonatomic ) UIImage* image;
+@property (strong, nonatomic ) NSString* urlDescription;
 
+
+
+- (instancetype)initWithImage:(UIImage*)image andDescription:(NSString*)description;
 @end
 
 NS_ASSUME_NONNULL_END
